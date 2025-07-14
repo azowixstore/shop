@@ -1,0 +1,133 @@
+function doPost(e) {
+  try {
+    // Get the active spreadsheet
+    var ss = SpreadsheetApp.getActiveSpreadsheet();
+    
+    // Try to get the sheet, create it if it doesn't exist
+    var sheet = ss.getSheetByName('Azowix Orders') || createNewOrderSheet(ss);
+    
+    // Parse the incoming JSON data
+    var orderData = JSON.parse(e.postData.contents);
+    
+    // Prepare the order record
+    var newRow = [
+      new Date(), // Timestamp
+      orderData.customer.firstName,
+      orderData.customer.lastName,
+      orderData.customer.email,
+      orderData.customer.phone,
+      orderData.customer.address,
+      orderData.customer.city,
+      orderData.customer.zip,
+      orderData.customer.country,
+      orderData.paymentMethod,
+      orderData.subtotal,
+      orderData.shipping,
+      orderData.total,
+      orderData.customer.notes || '', // Handle optional notes
+      JSON.stringify(orderData.items) // Store items as JSON string
+    ];
+    
+    // Append the new order
+    sheet.appendRow(newRow);
+    
+    // Return success response
+    return ContentService.createTextOutput(JSON.stringify({
+      status: 'success',
+      message: 'Order saved successfully',
+      orderId: Utilities.getUuid()
+    })).setMimeType(ContentService.MimeType.JSON);
+    
+  } catch (error) {
+    // Return error response
+    return ContentService.createTextOutput(JSON.stringify({
+      status: 'error',
+      message: error.toString()
+    })).setMimeType(ContentService.MimeType.JSON);
+  }
+}
+
+// Helper function to create a new order sheet with headers
+function createNewOrderSheet(spreadsheet) {
+  var sheet = spreadsheet.insertSheet('Azowix Orders');
+  
+  // Set up headers
+  var headers = [
+    'Order Date',
+    'First Name',
+    'Last Name',
+    'Email',
+    'Phone',
+    'Address',
+    'City',
+    'ZIP Code',
+    'Country',
+    'Payment Method',
+    'Subtotal',
+    'Shipping',
+    'Total',
+    'Notes',
+    'Items (JSON)'
+  ];
+  
+  // Add headers and format them
+  sheet.appendRow(headers);
+  var headerRange = sheet.getRange(1, 1, 1, headers.length);
+  headerRange.setBackground('#f0f0f0')
+             .setFontWeight('bold')
+             .setBorder(true, true, true, true, true, true);
+  
+  // Set column widths
+  sheet.setColumnWidth(1, 120); // Order Date
+  sheet.setColumnWidths(2, 4, 100); // Name, Email
+  sheet.setColumnWidth(5, 120); // Phone
+  sheet.setColumnWidth(6, 200); // Address
+  sheet.setColumnWidths(7, 3, 100); // City, ZIP, Country
+  sheet.setColumnWidth(10, 120); // Payment Method
+  sheet.setColumnWidths(11, 3, 80); // Amounts
+  sheet.setColumnWidth(14, 150); // Notes
+  sheet.setColumnWidth(15, 300); // Items
+  
+  return sheet;
+}
+
+// For testing purposes (can be run from the script editor)
+function testOrderSubmission() {
+  var testData = {
+    customer: {
+      firstName: 'John',
+      lastName: 'Doe',
+      email: 'john@example.com',
+      phone: '1234567890',
+      address: '123 Test St',
+      city: 'Testville',
+      zip: '12345',
+      country: 'Tunisia',
+      notes: 'Test order please ignore'
+    },
+    paymentMethod: 'cashOnDelivery',
+    items: [
+      {title: 'Test Product 1', price: 50, quantity: 2},
+      {title: 'Test Product 2', price: 30, quantity: 1}
+    ],
+    subtotal: 130,
+    shipping: 8,
+    total: 138
+  };
+  
+  var options = {
+    method: 'post',
+    payload: JSON.stringify(testData)
+  };
+  
+  // Simulate a POST request
+  var response = doPost({
+    postData: {
+      contents: JSON.stringify(testData),
+      length: JSON.stringify(testData).length,
+      type: 'application/json'
+    }
+  });
+  
+  Logger.log(response.getContent());
+}
