@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>خدمة Azowix لإنشاء مواقع تجارية إلكترونية</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+      <link rel="shortcut icon" href="azowix Icon.png" type="image/X-icon">
+  <style>
+    body {
+      font-family: 'Cairo', sans-serif;
+      background: linear-gradient(to bottom, #f9f9f9, gold);
+      margin: 0;
+      padding: 0;
+      direction: rtl;
+    }
+    header {
+      background: linear-gradient(90deg, goldenrod, gold);
+      color: white;
+      padding: 30px 20px;
+      text-align: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+    header p {
+      margin: 10px 0 0;
+      font-size: 1.2rem;
+    }
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 30px;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+    h2 {
+      color: rgb(0, 0, 0);
+      margin-bottom: 20px;
+    }
+    label {
+      display: block;
+      margin-top: 20px;
+      font-weight: bold;
+      color: #333;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 1rem;
+      margin-top: 5px;
+    }
+    input[type="file"] {
+      padding: 6px;
+    }
+    button {
+      margin-top: 25px;
+      padding: 15px 25px;
+      background:gold;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    button:hover {
+      background:gold ;
+    }
+       .button1 {
+      margin-top: 25px;
+      padding: 15px 25px;
+      background: gold;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .button1:hover {
+      background: gold;
+    }
+    .features {
+      background: #f8f8f8;
+      padding: 25px;
+      border-radius: 12px;
+      margin-top: 40px;
+    }
+    .feature {
+      margin-bottom: 25px;
+      padding: 15px;
+      border-right: 5px solid gold;
+      background: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0 1px 5px rgba(0,0,0,0.05);
+    }
+    .feature h3 {
+      margin: 0 0 10px;
+      color: rgb(0, 0, 0);
+    }
+    .feature p {
+      margin: 0;
+      color: #555;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <a href="index.html"><img width="30" height="30" src="https://img.icons8.com/ios/50/return.png" alt="return" align="left"/></a>
+  </div>
+
+  <header>
+    <h1>أنشئ موقعك التجاري مع Azowix</h1>
+    <p>خدمة تصميم مواقع إلكترونية احترافية خاصة بالتجارة بسعر 250دن الموقع الواحد</p>
+  </header>
+
+  <div class="container">
+    <h2>أرسل تفاصيل موقعك</h2>
+    <form>
+      <label>الاسم الكامل:</label>
+      <input type="text" name="fullname" required>
+
+      <label>رقم الهاتف:</label>
+      <input type="tel" name="phone" required>
+
+      <label>اسم الدومين المطلوب:</label>
+      <input type="text" name="domain" placeholder="مثال: mystore.tn" required>
+
+      <label>صور المنتجات أو الخدمات:</label>
+      <input type="file" name="productImages" multiple>
+
+      <label>صور لمواقع تعجبك:</label>
+      <input type="file" name="referenceImages" multiple>
+
+      <label>ملاحظات إضافية:</label>
+      <textarea name="notes" rows="4"></textarea>
+
+      <button type="submit">إرسال الطلب</button>
+    </form>
+
+    <div class="features">
+      <h2>لماذا تختار Azowix؟</h2>
+
+      <div class="feature">
+        <h3>🛒 مناسب للتجارة الإلكترونية</h3>
+        <p>نقدّم لك موقعًا مخصصًا لعرض المنتجات، سلة تسوق، دفع عبر التوصيل، وإدارة الطلبات بسهولة.</p>
+      </div>
+
+      <div class="feature">
+        <h3>🎨 تصميم احترافي حسب ذوقك</h3>
+        <p>نصمّم لك موقعًا عصريًا يتماشى مع هويتك البصرية واحتياجات جمهورك.</p>
+      </div>
+
+      <div class="feature">
+        <h3>🛠️ دعم فني دائم</h3>
+        <p>فريقنا متواجد دائمًا لمساعدتك قبل وبعد إطلاق الموقع. تواصل معنا عبر واتساب أو الإيميل.</p>
+      </div>
+    </div>
+  </div>
+<script>
+document.querySelector('form').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const submitBtn = e.target.querySelector('button[type="submit"]');
+  const originalText = submitBtn.innerText;
+  
+  try {
+    submitBtn.innerText = 'جاري الإرسال...';
+    submitBtn.disabled = true;
+    
+    // 1. رفع الصور إلى ImgBB
+    const IMGBB_KEY = 'ea32fcd54ebe85cbbe23ba56137fcbad';
+    
+    async function uploadFiles(inputName) {
+      const files = document.querySelector(`[name="${inputName}"]`).files;
+      const urls = [];
+      
+      for (let file of files) {
+        const formData = new FormData();
+        formData.append('image', file);
+        
+        const response = await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_KEY}`, {
+          method: 'POST',
+          body: formData
+        });
+        
+        const data = await response.json();
+        if (data.success) {
+          urls.push(data.data.url);
+        }
+      }
+      return urls;
+    }
+    
+    const [productUrls, referenceUrls] = await Promise.all([
+      uploadFiles('productImages'),
+      uploadFiles('referenceImages')
+    ]);
+    
+    // 2. إرسال البيانات إلى جوجل شيت
+    const scriptUrl = 'https://script.google.com/macros/s/AKfycbwFPtsQt3PnS_Hh0G3QFjLnhh-qMduqOkCO4EacUGtlrvv0qMnGs5BoW_ngoBnPShUc/exec';
+    
+    const response = await fetch(scriptUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        fullname: document.querySelector('[name="fullname"]').value,
+        phone: document.querySelector('[name="phone"]').value,
+        domain: document.querySelector('[name="domain"]').value,
+        notes: document.querySelector('[name="notes"]').value,
+        productImageUrls: productUrls.join('\n'),
+        referenceImageUrls: referenceUrls.join('\n')
+      }),
+      mode: 'no-cors' // إضافة هذا السطر إذا استمرت المشكلة
+    });
+    
+    if (!response.ok) throw  alert('تم إرسال طلبك بنجاح!');
+    
+    const result = await response.json();
+    if (result.status !== "success") throw new Error(result.message || 'خطأ غير معروف');
+    
+    alert('تم إرسال طلبك بنجاح!');
+    document.querySelector('form').reset();
+    
+  } catch (error) {
+    console.error('Error:', error);
+    alert(`حدث خطأ: ${error.message}`);
+  } finally {
+    submitBtn.innerText = originalText;
+    submitBtn.disabled = false;
+  }
+});
+</script>
+</body>
+</html>
